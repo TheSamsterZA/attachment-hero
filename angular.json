@@ -1,6 +1,154 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "attachment-hero": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/attachment-hero",
+      "sourceRoot": "projects/attachment-hero/src",
+      "prefix": "ah",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/attachment-hero",
+            "index": "projects/attachment-hero/src/index.html",
+            "main": "projects/attachment-hero/src/main.ts",
+            "polyfills": "projects/attachment-hero/src/polyfills.ts",
+            "tsConfig": "projects/attachment-hero/tsconfig.app.json",
+            "aot": true,
+            "buildOptimizer": true,
+            "namedChunks": true,
+            "optimization": false,
+            "outputHashing": "all",
+            "extractCss": false,
+            "progress": true,
+            "showCircularDependencies": true,
+            "sourceMap": true,
+            "vendorChunk": true,
+            "vendorSourceMap": false,
+            "extractLicenses": false,
+            "statsJson": false,
+            "es5BrowserSupport": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }
+            ],
+            "assets": [
+              "projects/attachment-hero/src/favicon.ico",
+              "projects/attachment-hero/src/assets"
+            ],
+            "styles": [
+              "projects/attachment-hero/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/attachment-hero/src/environments/environment.ts",
+                  "with": "projects/attachment-hero/src/environments/environment.prod.ts"
+                }
+              ],
+              "namedChunks": false,
+              "optimization": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "vendorSourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "attachment-hero:build",
+            "port": 4200,
+            "ssl": true,
+            "sslCert": "ssl/development-certificate.crt",
+            "sslKey": "ssl/development-certificate.key",
+            "hmr": false,
+            "hmrWarning": true,
+            "liveReload": true,
+            "watch": true,
+            "progress": true,
+            "servePathDefaultWarning": false,
+            "open": false
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "attachment-hero:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "attachment-hero:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/attachment-hero/src/test.ts",
+            "polyfills": "projects/attachment-hero/src/polyfills.ts",
+            "tsConfig": "projects/attachment-hero/tsconfig.spec.json",
+            "karmaConfig": "projects/attachment-hero/karma.conf.js",
+            "assets": [
+              "projects/attachment-hero/src/favicon.ico",
+              "projects/attachment-hero/src/assets"
+            ],
+            "styles": [
+              "projects/attachment-hero/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/attachment-hero/tsconfig.app.json",
+              "projects/attachment-hero/tsconfig.spec.json",
+              "projects/attachment-hero/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/attachment-hero/e2e/protractor.conf.js",
+            "devServerTarget": "attachment-hero:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "attachment-hero:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "attachment-hero"
 }

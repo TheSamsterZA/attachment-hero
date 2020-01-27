@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "sideload": "office-toolbox sideload -m manifests/hero-software.attachment-hero.dev.xml -a Outlook",
+    "validate": "office-toolbox validate -m manifests/hero-software.attachment-hero.dev.xml"
   },
   "private": true,
   "dependencies": {
@@ -19,17 +21,23 @@
     "@angular/platform-browser": "~9.0.0-rc.9",
     "@angular/platform-browser-dynamic": "~9.0.0-rc.9",
     "@angular/router": "~9.0.0-rc.9",
+    "@microsoft/office-js-helpers": "1.0.2",
+    "bowser": "2.8.1",
+    "classlist.js": "^1.1.20150312",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.900.0-rc.10",
     "@angular/cli": "~9.0.0-rc.10",
     "@angular/compiler-cli": "~9.0.0-rc.9",
     "@angular/language-service": "~9.0.0-rc.9",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
+    "@types/office-js": "1.0.64",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -38,6 +46,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "office-toolbox": "^0.3.0",
     "protractor": "~5.4.2",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",

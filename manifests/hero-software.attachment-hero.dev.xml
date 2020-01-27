@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
+  <Id>7bd4c79d-e188-4a82-86cb-f567232d203a</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Hero Software</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Attachment Hero" />
+  <Description DefaultValue="Save email attachments the smart way."/>
+  <IconUrl DefaultValue="https://localhost:4200/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://localhost:4200/assets/icon-80.png"/>
+  <SupportUrl DefaultValue="https://herosoftware.com.au/products/attachment-hero/" />
+  <AppDomains>
+    <!-- WORKAROUND: https://github.com/OfficeDev/office-js/issues/482#issuecomment-549205280 -->
+    <AppDomain>https://localhost:4200</AppDomain>
+    <AppDomain>https://attachment-hero.test.herosoftware.com.au</AppDomain>
+    <AppDomain>https://attachment-hero.herosoftware.com.au</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.6" />
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:4200/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteMailbox</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.6">
+        <bt:Set Name="Mailbox" />
+      </bt:Sets>
+    </Requirements>
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="Functions.Url" />
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="GroupId">
+                <Label resid="GroupLabel" />
+                <Control xsi:type="Button" id="OpenTaskpaneButton">
+                  <Label resid="TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label" />
+                    <Description resid="TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16" />
+                    <bt:Image size="32" resid="Icon.32" />
+                    <bt:Image size="80" resid="Icon.80" />
+                    <bt:Image size="20" resid="Icon.20" />
+                    <bt:Image size="24" resid="Icon.24" />
+                    <bt:Image size="40" resid="Icon.40" />
+                    <bt:Image size="48" resid="Icon.48" />
+                    <bt:Image size="64" resid="Icon.64" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://localhost:44301/images/icon-16.png"/>
+        <bt:Image id="Icon.32" DefaultValue="https://localhost:44301/images/icon-32.png"/>
+        <bt:Image id="Icon.80" DefaultValue="https://localhost:44301/images/icon-80.png"/>
+        <bt:Image id="Icon.20" DefaultValue="https://localhost:44301/images/icon-20.png" />
+        <bt:Image id="Icon.24" DefaultValue="https://localhost:44301/images/icon-24.png" />
+        <bt:Image id="Icon.25" DefaultValue="https://localhost:44301/images/icon-25.png" />
+        <bt:Image id="Icon.40" DefaultValue="https://localhost:44301/images/icon-40.png" />
+        <bt:Image id="Icon.48" DefaultValue="https://localhost:44301/images/icon-48.png" />
+        <bt:Image id="Icon.64" DefaultValue="https://localhost:44301/images/icon-64.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:4200/index.html" />
+        <bt:Url id="Functions.Url" DefaultValue="https://localhost:4200/functions.html" />
+        <bt:Url id="Contextual.Url" DefaultValue="https://localhost:4200/index.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GroupLabel" DefaultValue="Attachment Hero"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Open Attachment Hero"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to show the add-in."/>
+      </bt:LongStrings>
+    </Resources>
+    <!-- NOTE: TO SUPPORT A PINNABLE TASKPANE AND MOBILEFORMFACTOR (LATER) -->
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.6">
+          <bt:Set Name="Mailbox" MinVersion="1.6" />
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <FunctionFile resid="Functions.Url" />
+            <ExtensionPoint xsi:type="DetectedEntity">
+              <Label resid="GroupLabel" />
+              <SourceLocation resid="Contextual.Url" />
+              <Rule xsi:type="RuleCollection" Mode="And">
+                <Rule xsi:type="ItemIs" ItemType="Message" />
+                <Rule xsi:type="ItemHasRegularExpressionMatch" RegExName="OrderNumber" RegExValue="CO-\d{4}" PropertyName="BodyAsPlaintext" Highlight="all"/>
+              </Rule>
+            </ExtensionPoint>
+            <ExtensionPoint xsi:type="MessageReadCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="GroupId">
+                  <Label resid="GroupLabel" />
+                  <Control xsi:type="Button" id="OpenTaskpaneButton">
+                    <Label resid="TaskpaneButton.Label" />
+                    <Supertip>
+                      <Title resid="TaskpaneButton.Label" />
+                      <Description resid="TaskpaneButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16" />
+                      <bt:Image size="32" resid="Icon.32" />
+                      <bt:Image size="80" resid="Icon.80" />
+                      <bt:Image size="20" resid="Icon.20" />
+                      <bt:Image size="24" resid="Icon.24" />
+                      <bt:Image size="40" resid="Icon.40" />
+                      <bt:Image size="48" resid="Icon.48" />
+                      <bt:Image size="64" resid="Icon.64" />
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url" />
+                      <SupportsPinning>true</SupportsPinning>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16" DefaultValue="https://localhost:44301/images/icon-16.png"/>
+          <bt:Image id="Icon.32" DefaultValue="https://localhost:44301/images/icon-32.png"/>
+          <bt:Image id="Icon.80" DefaultValue="https://localhost:44301/images/icon-80.png"/>
+          <bt:Image id="Icon.20" DefaultValue="https://localhost:44301/images/icon-20.png" />
+          <bt:Image id="Icon.24" DefaultValue="https://localhost:44301/images/icon-24.png" />
+          <bt:Image id="Icon.25" DefaultValue="https://localhost:44301/images/icon-25.png" />
+          <bt:Image id="Icon.40" DefaultValue="https://localhost:44301/images/icon-40.png" />
+          <bt:Image id="Icon.48" DefaultValue="https://localhost:44301/images/icon-48.png" />
+          <bt:Image id="Icon.64" DefaultValue="https://localhost:44301/images/icon-64.png" />
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:4200/index.html" />
+          <bt:Url id="Functions.Url" DefaultValue="https://localhost:4200/functions.html" />
+          <bt:Url id="Contextual.Url" DefaultValue="https://localhost:4200/index.html" />
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="GroupLabel" DefaultValue="Attachment Hero"/>
+          <bt:String id="TaskpaneButton.Label" DefaultValue="Attachment Hero"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to show the add-in."/>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>

@@ -1,0 +1,1 @@
+openssl req -config ./development-certificate.cfg -new -x509 -sha256 -newkey rsa:2048 -nodes -keyout development-certificate.key -out development-certificate.crt -days 3650
